@@ -1,0 +1,44 @@
+<div class='container'>
+  <h1>Listing gifts</h1>
+
+  <table class='table table-condensed table-striped tablesorter'>
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>Description</th>
+        <th>Thanked</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @gifts.each do |gift| %>
+        <tr>
+          <td><%= gift.from %></td>
+          <td><%= gift.description %></td>
+          <td><%= gift.thanked %></td>
+          <td><%= link_to 'Show', gift %></td>
+          <td><%= link_to 'Edit', edit_gift_path(gift) %></td>
+          <td>
+            <%= form_for(gift) do |f| %>
+              <% if gift.thanked == true %>
+                <%= f.hidden_field :thanked, value: false %>
+                <%= f.submit "Un-Thank", class: 'btn-mini btn-warning'%>
+              <% else %>
+                <%= f.hidden_field :thanked, value: true %>
+                <%= f.submit "Thank", class: 'btn-mini btn-success'%>
+              <% end %>
+              <input type="hidden" name="redirect_to", value="index">
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br />
+
+  <%= link_to 'New Gift', new_gift_path %>
+</div>

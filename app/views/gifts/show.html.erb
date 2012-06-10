@@ -1,0 +1,22 @@
+<div class='container'>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <b>From:</b>
+    <%= @gift.from %>
+  </p>
+
+  <p>
+    <b>Description:</b>
+    <%= @gift.description %>
+  </p>
+
+  <p>
+    <b>Thanked:</b>
+    <%= @gift.thanked %>
+  </p>
+
+
+  <%= link_to 'Edit', edit_gift_path(@gift) %> |
+  <%= link_to 'Back', gifts_path %>
+</div>
