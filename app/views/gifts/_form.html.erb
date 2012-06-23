@@ -28,5 +28,7 @@
     <%= f.submit %>
   </div>
 <% end %>
-<%= link_to 'Delete this Gift', @gift, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger'%>
-<br/>
+<%- unless @gift.new_record? %>
+  <%= link_to 'Delete this Gift', @gift, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger'%>
+<%- end %>
+<br/><br />

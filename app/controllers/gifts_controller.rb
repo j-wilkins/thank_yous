@@ -2,7 +2,12 @@ class GiftsController < ApplicationController
   # GET /gifts
   # GET /gifts.json
   def index
-    @gifts = Gift.all
+    @gifts = params[:all] ? Gift.all : Gift.unthanked
+    
+    @total = Gift.count
+    @unthanked = Gift.unthanked.count
+
+    @done = @total - @unthanked
 
     respond_to do |format|
       format.html # index.html.erb

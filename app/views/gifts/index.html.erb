@@ -1,12 +1,25 @@
 <div class='container'>
-  <h1>Listing gifts</h1>
+  <h1>Listing unthanked gifts</h1>
+  <%- unless params[:all]%>
+    <%= link_to "Show all", gifts_path(all: true)%>
+  <%- else %>
+    <%= link_to "Show unthanked", gifts_path %>
+  <%- end %>
+  |
+  <%= link_to 'New Gift', new_gift_path %>
+  <br />
+
+  <h3><%= "#{@done} down, #{@unthanked} to go!" %></h3>
+  <%= "#{@total} total" %>
+
+  <br />
+
 
   <table class='table table-condensed table-striped tablesorter'>
     <thead>
       <tr>
         <th>From</th>
         <th>Description</th>
-        <th>Thanked</th>
         <th></th>
         <th></th>
         <th></th>
@@ -18,7 +31,6 @@
         <tr>
           <td><%= gift.from %></td>
           <td><%= gift.description %></td>
-          <td><%= gift.thanked %></td>
           <td><%= link_to 'Show', gift %></td>
           <td><%= link_to 'Edit', edit_gift_path(gift) %></td>
           <td>
@@ -40,5 +52,4 @@
 
   <br />
 
-  <%= link_to 'New Gift', new_gift_path %>
 </div>
